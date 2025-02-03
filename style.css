@@ -1,0 +1,274 @@
+/* 基础样式 */
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #333;
+}
+
+.chat-container {
+    width: 90%;
+    max-width: 800px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(15px);
+    display: flex;
+    flex-direction: column;
+    height: 90vh;
+    margin-top: 20px;
+}
+
+.messages {
+    flex: 1;
+    overflow-y: auto;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.8);
+    font-size: 16px;
+    scrollbar-width: thin;
+    scrollbar-color: #007bff #f1f3f5;
+}
+
+.messages::-webkit-scrollbar {
+    width: 10px;
+}
+
+.messages::-webkit-scrollbar-thumb {
+    background: #007bff;
+    border-radius: 5px;
+}
+
+.messages::-webkit-scrollbar-track {
+    background: #f1f3f5;
+    border-radius: 5px;
+}
+
+.message {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.message img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.message-content {
+    padding: 15px 20px;
+    border-radius: 15px;
+    max-width: 90%;
+    font-size: 16px;
+    line-height: 1.6;
+    background: #f1f3f5;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.message.user {
+    flex-direction: row-reverse;
+}
+
+.message.user img {
+    margin-left: 15px;
+    margin-right: 0;
+}
+
+.message.user .message-content {
+    background: #007bff;
+    color: white;
+    text-align: right;
+}
+
+.message.bot .message-content {
+    background: #f1f3f5;
+    color: #333;
+}
+
+.input-container {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.input-container input {
+    flex: 1;
+    min-width: 0;
+    padding: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.9);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input-container input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+    outline: none;
+}
+
+.input-container button {
+    padding: 12px 20px;
+    min-width: 60px;
+    white-space: nowrap;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.input-container button:hover {
+    background: #0056b3;
+    transform: translateY(-2px);
+}
+
+.input-container button:active {
+    transform: translateY(0);
+}
+
+/* 下拉菜单样式 */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    background: rgba(255, 255, 255, 0.9);
+    min-width: 160px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    z-index: 1;
+    margin-bottom: 10px;
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.dropdown-content.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.dropdown-item {
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.dropdown-item:hover {
+    background: rgba(0, 0, 0, 0, 0.1);
+}
+
+/* 深色模式样式 */
+body.dark-mode {
+    background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+    color: #fff;
+}
+
+.dark-mode .chat-container {
+    background: rgba(45, 45, 45, 0.9);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode .messages {
+    background: rgba(45, 45, 45, 0.8);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+.dark-mode .message.bot .message-content {
+    background: #444;
+    color: #fff;
+}
+
+.dark-mode .message.user .message-content {
+    background: #0056b3;
+    color: #fff;
+}
+
+.dark-mode .input-container input {
+    background: rgba(45, 45, 45, 0.9);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+.dark-mode .dropdown-content {
+    background: rgba(45, 45, 45, 0.9);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode .dropdown-item {
+    color: #fff;
+}
+
+.dark-mode .dropdown-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* 响应式样式 */
+@media (max-width: 768px) {
+    .chat-container {
+        width: 95%;
+        max-width: 90%;
+    }
+    }
+
+@media (max-width: 576px) {
+    .chat-container {
+        width: 90%;
+        max-width: 90%;
+    }
+    }
+
+
+/* 加载动画 */
+.loading {
+    text-align: center;
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1;
+    }
+}
